@@ -1,0 +1,48 @@
+h2{
+    color: red;
+}
+
+.dropdown{
+    overflow: hidden;
+}
+
+.dropdown .dropbtn{
+    font-size: 16px;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    margin: 0;
+}
+
+ a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+  }
+
+.dropdown-levels{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+}
+
+.dropdown-levels a:hover {
+    background-color: #ddd;
+  }
+  
+.dropdown:hover .dropdown-levels {
+    display: block;
+  }
+
+.game-container{
+    display: grid;
+    grid-template-columns: repeat(3,200px);
+    grid-template-rows: repeat(3,200px);
+}
+#square-1, #square-2, #square-4, #square-5, #square-7, #square-8{
+    border-right: 1px solid black;
+}
+
+#square-1, #square-2, #square-3, #square-4, #square-5, #square-6{
+    border-bottom: 1px solid black;
+
+}

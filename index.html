@@ -6,46 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <script src="code.js"></script>
+    <script src="code.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1 class="title">Tic Tac Toe</h1>
 
     <div class="window">
-        <div class="dropdown">
-            <button class="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Levels
-            </button>
-            <ul class="dropdown-levels">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
-            </ul>
-          </div>
 
-
-        <div class="buttons-container">
-            <button>X</button>
-            <button>O</button>
+        <div id="result">
+            <!-- Inserts the resultr -->
         </div>
-        <div class="game-container">
-            <div class="box" id="square-1"></div>
-            <div class="box" id="square-2"></div>
-            <div class="box" id="square-3"></div>
-            <div class="box" id="square-4"></div>
-            <div class="box" id="square-5"></div>
-            <div class="box" id="square-6"></div>
-            <div class="box" id="square-7"></div>
-            <div class="box" id="square-8"></div>
-            <div class="box" id="square-9"></div>
+
+        <div class="menu">
+            <div class="menu-container">
+                <h2>Create a game</h2>
+
+                <div class="input-container group-spacing">
+                    <label for="">Enter a name:</label><br>
+                    <input type="text" id="player1Name">
+                </div>
+                <p>Choose mode</p>
+                <div class="btn-group btn-group-toggle group-spacing" data-toggle="buttons">
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Single Mode
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Versus Mode
+                      </label>
+                </div>
+        
+    
+                <div class="input-container btns-container">
+                    <input class="btn btn-secondary btn-lg" id='submit-btn' type="submit" value="Start">
+                </div>
+            </div>
+          
+        </div>
+     
+   
+        <div class="board hidden">
+                <div class="square" id="0"></div>
+                <div class="square" id="1"></div>
+                <div class="square" id="2"></div>
+                <div class="square" id="3"></div>
+                <div class="square" id="4"></div>
+                <div class="square" id="5"></div>      
+                <div class="square" id="6"></div>
+                <div class="square" id="7"></div>
+                <div class="square" id="8"></div>
         </div>  
+        <!-- <div class="newGame-menu">
+            <h2>New game</h2>
+            <button class="btn btn-success" id="newGame">Play again</button>
+
+        </div> -->
 
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-muted">&copy; Odin Project</span>
+        </div>
 
+      </footer>
+    <!-- Includes JS Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
 </html>

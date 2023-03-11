@@ -31,16 +31,21 @@
                 <h2>Create a game</h2>
 
                 <div class="input-container group-spacing">
-                    <label for="">Enter a name:</label><br>
-                    <input type="text" id="player1Name">
+                    <label for="player1">Enter Player 1's name:</label><br>
+                    <input type="text" name ='player1' id="player1Name">
                 </div>
+                <div class="input-container group-spacing">
+                    <label for="player2">Enter Player 2's name:</label><br>
+                    <input type="text" name='player2' id="player2" disabled>
+                </div>
+                
                 <p>Choose mode</p>
                 <div class="btn-group btn-group-toggle group-spacing" data-toggle="buttons">
                     <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Single Mode
+                        <input class='gameType' type="radio" name="options" value="single" autocomplete="off" checked> Single Mode
                       </label>
                       <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Versus Mode
+                        <input class='gameType' type="radio" name="options" value="double" autocomplete="off"> Versus Mode
                       </label>
                 </div>
         

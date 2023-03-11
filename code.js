@@ -1,4 +1,5 @@
 const playerInput = document.querySelectorAll('.playerInput');
+let typeOfGame;
 const winningPattern = [
     //Base on Indexes
     [0,1,2],
@@ -184,12 +185,39 @@ submitbtn.addEventListener('click', openGame);
 
 const menu = document.querySelector('.menu');
 const boardGame = document.querySelector('.board');
+const gameTypeOptions = document.querySelectorAll('.gameType');
+
+// A function that checks if player will play against other players or against a computer
+function getGametype(){
+    let typeOfGame;
+    gameTypeOptions.forEach(item =>{
+        if(item.checked)
+        {
+            typeOfGame = (item.value);
+        }
+    });
+    return typeOfGame;
+}
+// Add a function that disable Player 2 input
+gameTypeOptions.forEach(item =>
+    item.addEventListener('click', event =>{
+        var getPlayer2 = document.getElementById('player2');
+        let value = event.currentTarget.value;
+        value === "double" ? getPlayer2.removeAttribute("disabled"): getPlayer2.setAttribute("disabled", true);
+    }));
 function openGame(event){
     boardGame.classList.remove('hidden');
     menu.classList.add('hidden');
-    console.log(event.currentTarget.id);
     const inputName = document.querySelector('#player1Name');
-    
+    typeOfGame = getGametype();
+    if(typeOfGame === 'single'){
+        console.log('player vs computer');
+    }
+    else
+    {
+        console.log('player vs player');
+    }
+
     //Creates Player 1 Name 
     player1.name = inputName.value;
     player1.symbol = "o";

@@ -218,8 +218,14 @@ function openGame(event){
         console.log('player vs player');
     }
 
+    const getPlayer1Name = document.getElementById('player1_name');
+    const getPlayer2Name = document.getElementById('player2_name');
+
     //Creates Player 1 Name 
     player1.name = inputName.value;
+    getPlayer1Name.innerHTML = player1.name;
     player1.symbol = "o";
     player1.isComputer = false;
+
+    getPlayer2Name.innerHTML = player2.name;
 }

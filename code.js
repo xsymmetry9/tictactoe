@@ -23,9 +23,9 @@ var player1 = playerFactory();
 var player2 = playerFactory('computer','x', true);
 
 const getSquares = document.querySelectorAll('.square');
-getSquares.forEach(square => {
-    square.addEventListener('click', handleSquareClick);
-});
+// getSquares.forEach(square => {
+//     square.addEventListener('click', handleSquareClick);
+// });
 
 function clearBoard(){
     board = ['','','','','','','','',''];
@@ -81,45 +81,66 @@ function handleSquareClick(event){
     const index = square.id;
     if(board[index] === '' && !gameOver) //If this square is empty and there is no winner
     {
-        if (turn == player1.name) 
+        //Player vs Player
+        // if (turn == player1.name) 
+        // {
+        //     //Adds the player's moves
+        //     player1.moves.push(index);
+        //     board[index] = player1.symbol;
+        //     square.innerHTML = player1.symbol;
+        //     isWinner();
+        //     if(gameOver)
+        //     {
+        //         result(player1.name);
+        //         newGameMenu();
+        //     }
+        //     // else if(!checkBoard){
+        //     //     alert('It is a draw');
+        //     // }
+        //     else{
+        //         turn = player2.name;
+        //     }
+        // }
+         
+        // else{
+        //     //comuter moves
+
+        //     // Player 2's turn
+        //     player2.moves.push(index);  
+        //     board[index] = player2.symbol;
+        //     square.innerHTML = player2.symbol;
+        //     isWinner();
+        //     if(gameOver){
+        //         result(player2.name);
+        //         newGameMenu();
+        //     }
+        //     // else if(!checkBoard){
+        //     //     alert('It is a draw');
+        //     // }
+        //     else{
+        //         turn = player1.name;
+        //     }
+        // }
+        if (player2.isComputer)
         {
-            //Adds the player's moves
             player1.moves.push(index);
-            board[index] = player1.symbol;
+            board[index]= player1.symbol;
             square.innerHTML = player1.symbol;
             isWinner();
-            if(gameOver)
-            {
+            if(gameOver){
                 result(player1.name);
                 newGameMenu();
             }
-            // else if(!checkBoard){
-            //     alert('It is a draw');
-            // }
             else{
-                turn = player2.name;
+                computer();
             }
         }
-         
         else{
-            //comuter moves
-
-            // Player 2's turn
-            player2.moves.push(index);  
-            board[index] = player2.symbol;
+            player2.moves.push(index);
+            board[index]=player2.symbol;
             square.innerHTML = player2.symbol;
-            isWinner();
-            if(gameOver){
-                result(player2.name);
-                newGameMenu();
-            }
-            // else if(!checkBoard){
-            //     alert('It is a draw');
-            // }
-            else{
-                turn = player1.name;
-            }
         }
+
     }       
     else{
         alert('Draw!');
@@ -134,9 +155,6 @@ function isWinner(){
         if (board[a] != '' && board[a] === board[b] && board[b] === board[c])
         {
             gameOver = true;
-        }
-        else{
-            gameOver = false;
         }
     });
 }
@@ -206,9 +224,12 @@ gameTypeOptions.forEach(item =>
         value === "double" ? getPlayer2.removeAttribute("disabled"): getPlayer2.setAttribute("disabled", true);
     }));
 function openGame(event){
+    const getPlayer1Name = document.getElementById('player1_name');
+    const getPlayer2Name = document.getElementById('player2_name');
     boardGame.classList.remove('hidden');
     menu.classList.add('hidden');
     const inputName = document.querySelector('#player1Name');
+    const SecondPlayerName = document.querySelector('#player2');
     typeOfGame = getGametype();
     if(typeOfGame === 'single'){
         console.log('player vs computer');
@@ -216,16 +237,21 @@ function openGame(event){
     else
     {
         console.log('player vs player');
+        player2.name = SecondPlayerName.value;
+        getPlayer2Name.innerHTML = player2.name;
+        player2.symbol = "o";
+        player2.isComputer = false;
     }
+    getSquares.forEach(square => {
+        square.addEventListener('click', handleSquareClick);
+    });
 
-    const getPlayer1Name = document.getElementById('player1_name');
-    const getPlayer2Name = document.getElementById('player2_name');
+
 
     //Creates Player 1 Name 
     player1.name = inputName.value;
     getPlayer1Name.innerHTML = player1.name;
     player1.symbol = "o";
     player1.isComputer = false;
-
     getPlayer2Name.innerHTML = player2.name;
 }

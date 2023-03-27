@@ -11,16 +11,16 @@ const winningPattern = [
     [0,4,8],
     [2,4,6]];
 
-var turn = 'human';
+var turn = 'player1';
 var board = ['','','','','','','','',''];
-let gameOver = false;
+var gameOver = false;
 const playerFactory = (name, symbol, isComputer=false, isWinner = false) =>{
    
     return{name, symbol, isComputer, moves:[], isWinner};
 }
 
 var player1 = playerFactory();
-var player2 = playerFactory('computer','x', true);
+var player2 = playerFactory();
 
 const getSquares = document.querySelectorAll('.square');
 // getSquares.forEach(square => {
@@ -82,70 +82,43 @@ function handleSquareClick(event){
     if(board[index] === '' && !gameOver) //If this square is empty and there is no winner
     {
         //Player vs Player
-        // if (turn == player1.name) 
-        // {
-        //     //Adds the player's moves
-        //     player1.moves.push(index);
-        //     board[index] = player1.symbol;
-        //     square.innerHTML = player1.symbol;
-        //     isWinner();
-        //     if(gameOver)
-        //     {
-        //         result(player1.name);
-        //         newGameMenu();
-        //     }
-        //     // else if(!checkBoard){
-        //     //     alert('It is a draw');
-        //     // }
-        //     else{
-        //         turn = player2.name;
-        //     }
-        // }
-         
-        // else{
-        //     //comuter moves
-
-        //     // Player 2's turn
-        //     player2.moves.push(index);  
-        //     board[index] = player2.symbol;
-        //     square.innerHTML = player2.symbol;
-        //     isWinner();
-        //     if(gameOver){
-        //         result(player2.name);
-        //         newGameMenu();
-        //     }
-        //     // else if(!checkBoard){
-        //     //     alert('It is a draw');
-        //     // }
-        //     else{
-        //         turn = player1.name;
-        //     }
-        // }
-        if (player2.isComputer)
+        //Player1 makes a move
+        if (turn === 'player1') //Checks if it's player1's turn
         {
             player1.moves.push(index);
-            board[index]= player1.symbol;
-            square.innerHTML = player1.symbol;
-            isWinner();
+            board[index]= player1.symbol; //Stores the move in the board[]
+            square.innerHTML = player1.symbol; //Draws the move to the board
+            isWinner(); //returns if the game is over
             if(gameOver){
-                result(player1.name);
-                newGameMenu();
+                result(player1.name); //Displays the winner
+                newGameMenu(); //Displays if the player wants a rematch
             }
             else{
-                computer();
+                if(player2.isComputer)
+                {
+                    computer();//Computer moves but doesn't check if computer has won the game or not
+                    turn = 'player1';
+                }
+                else{
+                    turn ='player2';
+                }
             }
         }
-        else{
-            player2.moves.push(index);
-            board[index]=player2.symbol;
-            square.innerHTML = player2.symbol;
+        else{ //Player2's turn
+            player2.moves.push(index); //Player2 human makes a move
+            board[index]= player2.symbol; //Stores the move in the board[]
+            square.innerHTML = player2.symbol; //Draws the moves on the board
+            isWinner(); //Returns if game is over or not
+            if(gameOver){
+                result(player2.name); //Displays Player2's name
+                newGameMenu();//Display if the player wants a rematch
+            }
+            else{
+                turn ='player1'; //Back to Player 1 turn
+            }
         }
-
-    }       
-    else{
-        alert('Draw!');
+       }
     }
-}
 
 function isWinner(){
     winningPattern.forEach(item=>{
@@ -233,25 +206,23 @@ function openGame(event){
     typeOfGame = getGametype();
     if(typeOfGame === 'single'){
         console.log('player vs computer');
+        player2 = playerFactory('Computer','x', true);
     }
     else
     {
         console.log('player vs player');
         player2.name = SecondPlayerName.value;
         getPlayer2Name.innerHTML = player2.name;
-        player2.symbol = "o";
+        player2.symbol = "x";
         player2.isComputer = false;
     }
     getSquares.forEach(square => {
         square.addEventListener('click', handleSquareClick);
     });
 
-
-
     //Creates Player 1 Name 
-    player1.name = inputName.value;
+    player1 = playerFactory(inputName.value, "O", false);
+    //Displays player 1 and player 2
     getPlayer1Name.innerHTML = player1.name;
-    player1.symbol = "o";
-    player1.isComputer = false;
     getPlayer2Name.innerHTML = player2.name;
 }

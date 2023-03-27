@@ -177,6 +177,7 @@ submitbtn.addEventListener('click', openGame);
 const menu = document.querySelector('.menu');
 const boardGame = document.querySelector('.board');
 const gameTypeOptions = document.querySelectorAll('.gameType');
+const displayName = document.getElementById('displayName');
 
 // A function that checks if player will play against other players or against a computer
 function getGametype(){
@@ -196,10 +197,12 @@ gameTypeOptions.forEach(item =>
         let value = event.currentTarget.value;
         value === "double" ? getPlayer2.removeAttribute("disabled"): getPlayer2.setAttribute("disabled", true);
     }));
+
 function openGame(event){
     const getPlayer1Name = document.getElementById('player1_name');
     const getPlayer2Name = document.getElementById('player2_name');
     boardGame.classList.remove('hidden');
+    displayName.classList.remove('hidden');
     menu.classList.add('hidden');
     const inputName = document.querySelector('#player1Name');
     const SecondPlayerName = document.querySelector('#player2');

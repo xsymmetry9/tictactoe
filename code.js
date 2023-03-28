@@ -64,7 +64,7 @@ function newGameMenu(){
    document.querySelector('.window').appendChild(menu);
 
    const playAgain = document.getElementById('newGame');
-   playAgain.addEventListener('click', clearBoard);
+   playAgain.addEventListener('click', clearBoard); //Fix this code so that when it is drawn, it deletes the button
  
 }
 

@@ -25,9 +25,6 @@ var player1 = playerFactory();
 var player2 = playerFactory();
 
 const getSquares = document.querySelectorAll('.square');
-// getSquares.forEach(square => {
-//     square.addEventListener('click', handleSquareClick);
-// });
 
 function clearBoard(){
     board = ['','','','','','','','',''];
@@ -38,6 +35,7 @@ function clearBoard(){
        gameOver = false;
     });
    clearWindow();
+   removeDrawingBoard();
    numTurn = 0; //resets the number of moves
 }
 function clearWindow(){
@@ -47,25 +45,50 @@ function clearWindow(){
    delMenu.remove();
 }
 function newGameMenu(){
-   const menu = document.createElement('div');
-   const h2 = document.createElement('h2');
-   const button = document.createElement('button');
+   var menu = document.createElement('div'); //Creates a display menu
+   var h2 = document.createElement('h2'); //Creates a h2 heading
+   var container = document.createElement('div');
+   var againBtn = document.createElement('button'); //Creates a button for 'Play again'
+   var menuBtn = document.createElement('button'); //Creates a button to go back to 'Menu'
 
-   menu.classList.add('newGame-menu');
+   menu.classList.add('newGame-menu'); //Adds style to menu
+   //Adds style to button container
+   var containerClassList = ['d-flex', 'gap-3']; 
+   containerClassList.forEach(item => container.classList.add(item));
+
    h2.textContent = 'New Game';
-   button.classList.add('btn');
-   button.classList.add('btn-success');
-   button.setAttribute('id','newGame');
-   button.textContent='Play again';
+
+   var againBtnClassList = ['btn', 'btn-primary'];
+   againBtnClassList.forEach(item => againBtn.classList.add(item));
+   againBtn.setAttribute('id','newGame');
+   againBtn.textContent='Play again';
 
    menu.appendChild(h2);
-   menu.appendChild(button);
+   container.appendChild(againBtn);
+
+   var menuBtnClassList = ['btn', 'btn-success'];
+   menuBtnClassList.forEach(item => menuBtn.classList.add(item));
+   menuBtn.setAttribute('id','menu-btn');
+   menuBtn.textContent='Menu';
+
+   menu.appendChild(h2);
+   container.appendChild(menuBtn);
+   menu.append(container);
 
    document.querySelector('.window').appendChild(menu);
 
-   const playAgain = document.getElementById('newGame');
+   var playAgain = document.getElementById('newGame');
    playAgain.addEventListener('click', clearBoard); //Fix this code so that when it is drawn, it deletes the button
- 
+
+   var menu = document.getElementById('menu-btn');
+   menu.addEventListener('click', backMenu); 
+}
+
+function backMenu(){
+    clearBoard();
+    boardGame.classList.add('hidden');
+    displayName.classList.add('hidden');
+    menu.classList.remove('hidden');
 }
 
 function result(name){
@@ -75,7 +98,12 @@ function result(name){
    arr.forEach(item =>{
        h3.classList.add(item);
    })
-   h3.textContent = `The winner is ${name}`;
+   if (name ==='no winners'){
+    h3.textContent = "It's a draw";
+   }
+   else{
+    h3.textContent = `The winner is ${name}`;
+   }
    getContainer.appendChild(h3);
 }
 
@@ -99,7 +127,7 @@ function handleSquareClick(event){
             }
             else if(numTurn === 9)
             {
-                alert("It's a draw.");
+                result("no winners");
                 newGameMenu();
             }
             else{
@@ -114,7 +142,7 @@ function handleSquareClick(event){
                     }
                     else if(numTurn === 9)
                     {
-                        alert("It's a draw.");
+                        result("no winners");
                         newGameMenu();
                     }
                     else{
@@ -156,12 +184,24 @@ function isWinner(){
         if (board[a] != '' && board[a] === board[b] && board[b] === board[c])
         {
             gameOver = true;
+            drawBoard(a,b,c);
         }
     });
 }
+var styleArr = ['bg-danger','text-light'];
+function drawBoard(a,b,c)
+{
+    var square = [a,b,c];
+    square.forEach(item => {
+        var color = document.getElementById(item);
+        color.classList.add('drawWinner');
+    });
+}
 
-function checkBoard(){
-    board.includes('');  
+function removeDrawingBoard(){
+    //All styles are classes
+    let elements = document.querySelectorAll('.drawWinner');
+    elements.forEach(ele => ele.classList.remove('drawWinner'));
 }
 
 function randomNumber(){
@@ -246,17 +286,7 @@ function openGame(event){
     menu.classList.add('hidden');
     const inputName = document.querySelector('#player1Name');
     typeOfGame = getGametype();
-    // if(typeOfGame === 'single'){
-    //     console.log('player vs computer');
-    //     player2 = playerFactory('Computer','X', true);
-    // }
-    // else
-    // {
-    //     console.log('player vs player');
-    //     player2 = playerFactory(SecondPlayerName.value, 'X', false);
-    //     getPlayer2Name.innerHTML = player2.name;
 
-    // }
     getSquares.forEach(square => {
         square.addEventListener('click', handleSquareClick);
     });

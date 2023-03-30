@@ -91,4 +91,7 @@ h2{
     margin-top: 3rem;
     padding: 1.5rem .5rem;
 }
-
+.drawWinner{
+    background-color: red;
+    color: white;
+}

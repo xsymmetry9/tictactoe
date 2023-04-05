@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
 
     <script src="code.js" defer></script>
     <link rel="stylesheet" href="style.css">
@@ -21,52 +21,56 @@
     <h1 class="title">Tic Tac Toe</h1>
 
     <div class="window">
-        <div class="row text-center hidden" id="displayName">
-            <div class="col-6">
-                <h2 id="player1_name">Player 1 Name</h2>
-                <p>O</p>
+        <div class= "player-styles visually-hidden" id="displayName">
+            <div class="player-style">
+                <!-- <img src="images/Gary.png" width="100" height="120" alt="Gary"> -->
+                <a class="icon" href="https://www.flaticon.com/free-icons/man" title="man icons"><img src="images/beard.png" alt="Man icons created by Smashicons - Flaticon"></a>
+                <h2 class="fs-1" id="player1_name">Player 1 Name</h2>
             </div>
-            <div class="col-6">
-                <h2 id="player2_name">Player 2 Name</h2>
-                <p>X</p>
+            <div class= "displayBox-container">
+                <p id="displayBox"></p>
+                <!-- code goes here -->
+            </div>
+            <div class="player-style">
+                <!-- <img src="images/Kalisa.jpg" width="100" height="120" alt="kalisa"> -->
+                <a class= "icon" href="https://www.flaticon.com/free-icons/person" title="person icons"><img src="images/sailor.png" alt="icons created by Smashicons - Flaticon"></a>
+                <h2 class="fs-1 text-dark p-3" id="player2_name">Player 2 Name</h2>
             </div>
         </div>
-        <div id="result">
-            <!-- Inserts the resultr -->
-        </div>
-
+  
         <div class="menu">
-            <div class="menu-container">
-                <h2>Create a game</h2>
-
-                <div class="input-container group-spacing">
-                    <label for="player1">Enter Player 1's name:</label><br>
-                    <input type="text" name ='player1' id="player1Name">
+            <h2 class="menu-title">Create a game</h2>
+            <div class= "form-container" action="/">
+                <div class="inputs">
+                    <label for="player1">Player 1:</label><br>
+                    <input type="text" name ='player1' id="player1">
                 </div>
-                <div class="input-container group-spacing">
-                    <label for="player2">Enter Player 2's name:</label><br>
+                <div class="inputs">
+                    <label for="player2">Player 2:</label><br>
                     <input type="text" name='player2' id="player2" disabled>
                 </div>
+
+                <h3 class= "radio-title">Choose a mode</h3>
                 
-                <p>Choose mode</p>
-                <div class="btn-group btn-group-toggle group-spacing" data-toggle="buttons">
-                    <label class="btn btn-secondary">
-                        <input class='gameType' type="radio" name="options" value="single" autocomplete="off" checked> Single Mode
-                      </label>
-                      <label class="btn btn-secondary">
-                        <input class='gameType' type="radio" name="options" value="double" autocomplete="off"> Versus Mode
-                      </label>
+                <div class="radio-container" data-toggle="buttons">
+                    <label class="radios">
+                    <input class='gameType' type="radio" name="options" value="single" autocomplete="off" checked> Single Mode
+                    </label>
+                    <label class="radios">
+                    <input class='gameType' type="radio" name="options" value="double" autocomplete="off"> Versus Mode
+                    </label>
                 </div>
     
-                <div class="input-container btns-container">
-                    <input class="btn btn-secondary btn-lg" id='submit-btn' type="submit" value="Start">
-                </div>
+                <div class="btn-container">
+                    <input class="btn-primary" id='submit-btn' type="submit" value="Start">
+                </div>    
+            
             </div>
-          
+           
         </div>
      
    
-        <div class="board hidden">
+        <div class="board visually-hidden">
                 <div class="square" id="0"></div>
                 <div class="square" id="1"></div>
                 <div class="square" id="2"></div>
@@ -78,20 +82,15 @@
                 <div class="square" id="8"></div>
         </div>  
         <!-- <div class="newGame-menu">
-            <h2>New game</h2>
-            <div class="d-flex gap-3">
-                <button class="btn btn-primary" id="newGame">Play again</button>
-                <button class="btn btn-success" id="menu-btn">Menu</button>
-            </div>
+            <button class="btn-secondary" id="newGame">Again?</button>
+            <button class="btn-secondary" id="goMenu">Menu</button>
 
         </div> -->
 
 
     </div>
-    <footer class="py-3 my-5 border-top">
-        <p class="text-center mb-3 mb-md-0">An Odin Project &copy; Gary Lei</p>
-
-
+    <footer>
+        <p>An Odin Project &copy; Gary Lei</p>
       </footer>
     <!-- Includes JS Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
